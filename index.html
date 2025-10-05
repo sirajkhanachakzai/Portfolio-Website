@@ -1,283 +1,323 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Github, ExternalLink } from "lucide-react";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Siraj Khan Achakzai — Portfolio</title>
+  <meta name="description" content="Siraj Khan Achakzai — Frontend Developer & Designer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#fff7fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent1:#ff6bcb; /* pink */
+      --accent2:#ff3d81; /* magenta */
+      --glass: rgba(255,107,203,0.08);
+      --radius:14px;
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#fff7fb,#fff0f6);color:#0f1724;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
 
-// UpgradedPortfolio.jsx
-// Single-file React component (Tailwind CSS + framer-motion + shadcn/ui + lucide-react)
-// How to use:
-// 1. Drop this file into a Next.js / Vite React app that has Tailwind CSS configured.
-// 2. Ensure shadcn components (Card, Button) and lucide-react are available.
-// 3. Replace placeholder text, images and project data below with your real content.
+    /* Header */
+    header{position:fixed;inset:0 0 auto 0;height:72px;background:rgba(255,255,255,0.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:120;box-shadow:0 8px 30px rgba(12,16,24,0.06)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:grid;place-items:center;color:white;font-weight:700}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{position:relative;text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:10px;font-weight:600}
+    nav a:hover{color:var(--accent2)}
+    nav a.active{color:var(--accent2);}
+    nav a.active::after{content:'';position:absolute;left:8px;right:8px;height:3px;background:linear-gradient(90deg,var(--accent1),var(--accent2));bottom:-8px;border-radius:3px}
 
-export default function UpgradedPortfolio() {
-  // Replace these with your real data and image paths
-  const hero = {
-    name: "Siraj Khan Achakzai",
-    title: "Web & AI Developer",
-    tagline:
-      "I build clean, responsive web and mobile experiences. Currently focused on AI & chatbot development alongside full-stack web apps.",
-    avatar: "/siraj.jpg",
-  };
+    /* Sections */
+    main{padding-top:96px}
+    section{padding:56px 20px}
+    .section-inner{max-width:1100px;margin:0 auto}
+    .section-title{font-size:28px;text-align:center;margin-bottom:18px}
 
-  const projects = [
-    { id: 1, title: "Portfolio Website", desc: "A personal portfolio built with HTML, CSS & JavaScript showcasing projects and contact details.", image: "/images/project-portfolio.jpg", tags: ["HTML", "CSS", "JavaScript"], link: "#" },
-    { id: 2, title: "Salt & Pepper Main Page Clone", desc: "Landing page clone focused on layout and responsive design.", image: "/images/project-saltpepper.jpg", tags: ["HTML", "CSS"], link: "#" },
-    { id: 3, title: "Music Website", desc: "Simple music site built with pure HTML & CSS demonstrating UI skills.", image: "/images/project-music.jpg", tags: ["HTML", "CSS"], link: "#" },
-    { id: 4, title: "Teachable Machine", desc: "A teachable machine project that detects voice emotions and sign language.", image: "/images/project-teachable.jpg", tags: ["ML", "WebRTC"], link: "#" },
-    { id: 5, title: "Burger King Clone", desc: "A clone of Burger King main page—practice in layout and responsive images.", image: "/images/project-burger.jpg", tags: ["HTML", "CSS", "Responsive"], link: "#" },
-    { id: 6, title: "E‑Commerce Website", desc: "An e-commerce demo built with HTML, CSS and JavaScript.", image: "/images/project-ecom.jpg", tags: ["HTML", "JS"], link: "#" },
-  ];
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;min-height:70vh}
+    @media(max-width:940px){.hero{grid-template-columns:1fr}}
+    .hero h1{font-size:40px;margin:6px 0}
+    .lead{color:var(--muted);max-width:56ch}
+    .cta-row{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white}
+    .hero-img{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(255,61,129,0.08)}
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block;min-height:320px}
 
-  const skills = [
-    "JavaScript (ES6+)",
-    "TypeScript",
-    "React & Next.js",
-    "Node.js & Express",
-    "Tailwind CSS",
-    "Design Systems",
-    "Accessibility",
-    "Testing (Jest, Cypress)",
-  ];
+    /* Skills */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    @media(max-width:1000px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.skills-grid{grid-template-columns:1fr}}
+    .skill-card{background:linear-gradient(180deg,#fff,#fff7fb);padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(12,16,24,0.06);text-align:center;transition:transform .28s,box-shadow .28s}
+    .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(12,16,24,0.08)}
+    .skill-icon{width:86px;height:86px;border-radius:999px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(180deg,rgba(255,107,203,0.12),rgba(255,61,129,0.06))}
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900">
-      <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="font-bold text-xl tracking-tight">SKA</div>
-          <nav className="hidden md:flex gap-6 text-sm text-slate-700">
-            <a href="#projects" className="hover:text-slate-900">Projects</a>
-            <a href="#about" className="hover:text-slate-900">About</a>
-            <a href="#contact" className="hover:text-slate-900">Contact</a>
-            <a href="#resume" className="hover:text-slate-900">Resume</a>
-          </nav>
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    @media(max-width:1000px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.projects-grid{grid-template-columns:1fr}}
+    .project{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .28s,box-shadow .28s}
+    .project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .6s}
+    .project:hover img{transform:scale(1.06)}
+    .project .card{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(255,107,203,0.14),rgba(255,61,129,0.08));padding:8px 12px;border-radius:999px;font-weight:700;color:#111}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    @media(max-width:900px){.about-grid{grid-template-columns:1fr}}
+    .about-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff7fb);box-shadow:0 12px 30px rgba(12,16,24,0.06)}
+    .about-photo{border-radius:14px;overflow:hidden}
+    .about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Contact */
+    .contact-wrap{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
+    @media(max-width:980px){.contact-wrap{grid-template-columns:1fr}}
+    .contact-card{background:linear-gradient(180deg,#fff,#fff7fb);padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(12,16,24,0.06)}
+    .contact-line{display:flex;gap:12px;align-items:center;color:var(--muted);margin-bottom:12px}
+    .contact-line i{color:var(--accent2);min-width:28px;text-align:center}
+    .socials{display:flex;gap:10px;margin-top:12px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;padding:10px;border-radius:10px;background:white;box-shadow:0 8px 20px rgba(12,16,24,0.06);text-decoration:none;color:var(--muted)}
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(12,16,24,0.06)}
+    .contact-form button{padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:700}
+
+    /* Footer */
+    footer{padding:28px 18px;text-align:center;background:transparent}
+    .footer-credits{color:var(--muted);margin-top:8px}
+    .footer-socials{display:flex;gap:10px;justify-content:center;margin-top:12px}
+    .footer-socials a{padding:10px;border-radius:10px;background:#111;color:#fff;text-decoration:none}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(18px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:520px){.hero h1{font-size:26px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><div class="logo">SK</div><div><div style="font-weight:700">Siraj Khan Achakzai</div><div style="font-size:12px;color:var(--muted)">Frontend Developer & Designer</div></div></div>
+    <nav id="mainNav">
+      <a href="#home" class="navlink">Home</a>
+      <a href="#skills" class="navlink">Skills</a>
+      <a href="#projects" class="navlink">Projects</a>
+      <a href="#about" class="navlink">About</a>
+      <a href="#contact" class="navlink">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HOME -->
+    <section id="home" class="reveal">
+      <div class="section-inner hero">
+        <div>
+          <div class="eyebrow">Crafting interfaces</div>
+          <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">Siraj Khan Achakzai</span></h1>
+          <p class="lead">I build modern, responsive web & mobile experiences — landing pages, e-commerce, chatbots and AI assistants. I focus on beautiful design, accessibility and performance.</p>
+          <div class="cta-row"><a class="btn btn-primary" href="#projects">See Projects</a><a class="btn" href="#contact">Contact Me</a></div>
         </div>
-        <div className="flex items-center gap-3">
-          <a href="https://github.com/yourusername" aria-label="GitHub">
-            <Github size={18} />
-          </a>
-          <a href="https://linkedin.com/in/yourusername" aria-label="LinkedIn">
-            <Linkedin size={18} />
-          </a>
-          <a href="#contact">
-            <Button>Hire me</Button>
-          </a>
+        <div class="hero-img"><img src="https://images.pexels.com/photos/5496459/pexels-photo-5496459.jpeg" alt="workspace"></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="section-inner">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fa fa-code" style="font-size:28px;color:var(--accent2)"></i></div>
+            <h4>Web Development</h4>
+            <p style="color:var(--muted)">Crafting fast, modern, and responsive websites using HTML, CSS and JavaScript frameworks.</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fa fa-mobile-screen-button" style="font-size:28px;color:var(--accent2)"></i></div>
+            <h4>Mobile App Development</h4>
+            <p style="color:var(--muted)">Designing intuitive and scalable mobile apps (React Native, Flutter) with great UX.</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fa fa-robot" style="font-size:28px;color:var(--accent2)"></i></div>
+            <h4>Chatbot Development</h4>
+            <p style="color:var(--muted)">Building intelligent AI-driven chatbots, intent design and integration with APIs.</p>
+          </div>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <main className="max-w-6xl mx-auto px-6 pb-24">
-        {/* HERO */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="md:col-span-2"
-          >
-            <p className="text-sm text-slate-500">Hi, my name is</p>
-            <h1 className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight">
-              {hero.name}
-            </h1>
-            <h2 className="mt-2 text-lg text-slate-600">{hero.title}</h2>
-            <p className="mt-6 text-slate-700 max-w-2xl leading-relaxed">
-              {hero.tagline}
-            </p>
-
-            <div className="mt-6 flex gap-3">
-              <a href="#projects">
-                <Button>View projects</Button>
-              </a>
-              <a href="#contact" className="inline-flex items-center gap-2">
-                <Mail size={16} />
-                <span className="text-sm text-slate-700">Contact</span>
-              </a>
-            </div>
-
-            <div className="mt-8 grid grid-cols-3 gap-4 md:grid-cols-6">
-              {/* Quick stats / badges - replace numbers as needed */}
-              <div className="p-4 bg-white border rounded-2xl shadow-sm">
-                <div className="text-xl font-semibold">12+</div>
-                <div className="text-xs text-slate-500">Projects</div>
-              </div>
-              <div className="p-4 bg-white border rounded-2xl shadow-sm">
-                <div className="text-xl font-semibold">5</div>
-                <div className="text-xs text-slate-500">Years exp</div>
-              </div>
-              <div className="p-4 bg-white border rounded-2xl shadow-sm">
-                <div className="text-xl font-semibold">Remote</div>
-                <div className="text-xs text-slate-500">Available</div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="order-first md:order-last flex justify-center md:justify-end"
-          >
-            <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-100">
-              {/* Replace with next/image in Next.js for optimization */}
-              <img src={hero.avatar} alt="avatar" className="w-full h-full object-cover" />
-            </div>
-          </motion.div>
-        </section>
-
-        {/* PROJECTS */}
-        <section id="projects" className="py-12">
-          <h3 className="text-2xl font-bold">Selected Projects</h3>
-          <p className="text-slate-600 mt-2 max-w-2xl">
-            A selection of things I’ve built — focusing on UI, performance and maintainable code.
-          </p>
-
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {projects.map((p) => (
-              <Card key={p.id} className="hover:shadow-lg transition-shadow">
-                <CardContent>
-                  <div className="relative rounded-lg overflow-hidden h-44 bg-slate-100">
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
-                    <a href={p.link} className="absolute top-3 right-3 inline-flex items-center gap-2 bg-white/80 p-2 rounded-lg">
-                      <ExternalLink size={14} />
-                    </a>
-                  </div>
-
-                  <h4 className="mt-4 font-semibold text-lg">{p.title}</h4>
-                  <p className="mt-2 text-sm text-slate-600">{p.desc}</p>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span key={t} className="text-xs px-2 py-1 bg-slate-100 rounded-full">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section id="about" className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold">About me</h3>
-            <p className="text-slate-600 mt-2 max-w-2xl">
-              I’m a developer who cares about thoughtful product design, performance and accessible
-              experiences. I enjoy turning complex problems into simple, beautiful interfaces.
-            </p>
-
-            <div className="mt-6">
-              <h4 className="font-semibold">Skills</h4>
-              <ul className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-slate-700">
-                {skills.map((s) => (
-                  <li key={s} className="py-2 px-3 bg-white border rounded-lg shadow-sm">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="font-semibold">Selected experience</h4>
-              <div className="mt-3 space-y-3 text-sm text-slate-700">
-                <div className="p-4 bg-white border rounded-2xl shadow-sm">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <div className="font-semibold">Frontend Engineer — Acme Inc</div>
-                      <div className="text-xs text-slate-500">2022 — Present</div>
-                    </div>
-                    <div className="text-xs text-slate-400">Remote</div>
-                  </div>
-                  <div className="mt-2">Built component library and improved bundle times by 30%.</div>
-                </div>
-
-                <div className="p-4 bg-white border rounded-2xl shadow-sm">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <div className="font-semibold">Full-Stack Developer — Studio</div>
-                      <div className="text-xs text-slate-500">2019 — 2022</div>
-                    </div>
-                    <div className="text-xs text-slate-400">Hybrid</div>
-                  </div>
-                  <div className="mt-2">Led frontend for a multi-tenant CMS and authored design system tokens.</div>
-                </div>
-              </div>
-            </div>
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="section-inner">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="projects-grid">
+          <div class="project" data-title="Landing Page" data-type="Landing">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f8b" alt="Landing Page">
+            <div class="card">Landing</div>
           </div>
 
-          <aside className="p-4 bg-white border rounded-2xl shadow-sm">
-            <h4 className="font-semibold">Contact</h4>
-            <p className="text-sm text-slate-600 mt-2">I’m open to remote/full-time opportunities.</p>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center gap-3">
-                <Mail size={16} />
-                <a href="mailto:sirajkhanachakzai67@gmail.com" className="text-sm font-medium">sirajkhanachakzai67@gmail.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Github size={16} />
-                <a href="https://github.com/sirajkhan" className="text-sm font-medium">github.com/sirajkhan</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Linkedin size={16} />
-                <a href="https://linkedin.com/in/sirajkhan" className="text-sm font-medium">linkedin.com/in/sirajkhan</a>
-              </div>
-
-              <div className="mt-4">
-                <a href="#contact">
-                  <Button>Send a message</Button>
-                </a>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        {/* CTA / Contact form */}
-        <section id="contact" className="py-12">
-          <div className="bg-gradient-to-r from-white to-slate-50 p-8 rounded-2xl border shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-              <div>
-                <h3 className="text-2xl font-bold">Let’s build something great.</h3>
-                <p className="text-slate-600 mt-2">Tell me about your project — I’ll respond within a few days.</p>
-                <div className="mt-4 flex gap-3">
-                  <a href="mailto:sirajkhanachakzai67@gmail.com">
-                    <Button>Say hello</Button>
-                  </a>
-                </div>
-              </div>
-
-              <form className="space-y-3 bg-white p-4 rounded-lg shadow-sm">
-                <div>
-                  <label className="text-xs text-slate-600">Name</label>
-                  <input className="w-full mt-1 border rounded-md p-2 text-sm" placeholder="Your name" />
-                </div>
-                <div>
-                  <label className="text-xs text-slate-600">Email</label>
-                  <input className="w-full mt-1 border rounded-md p-2 text-sm" placeholder="you@domain.com" />
-                </div>
-                <div>
-                  <label className="text-xs text-slate-600">Message</label>
-                  <textarea className="w-full mt-1 border rounded-md p-2 text-sm" rows={4} placeholder="Describe the project..." />
-                </div>
-                <div className="flex justify-end">
-                  <Button type="submit">Send</Button>
-                </div>
-              </form>
-            </div>
+          <div class="project" data-title="E-commerce Website" data-type="Ecommerce">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d9a" alt="Ecommerce">
+            <div class="card">E-commerce</div>
           </div>
-        </section>
 
-        {/* Footer */}
-        <footer id="resume" className="mt-12 py-8 text-sm text-slate-600">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>© {new Date().getFullYear()} {hero.name}. Built with care.</div>
-            <div className="flex items-center gap-4">
-              <a href="/SirajKhan_Achakzai_Resume.pdf" className="hover:underline">Resume (PDF)</a>
-              <a href="#projects" className="hover:underline">Top</a>
-            </div>
+          <div class="project" data-title="Teachable Machine" data-type="ML">
+            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=806&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Teachable Machine">
+            <div class="card">Teachable Machine</div>
           </div>
-        </footer>
-      </main>
+
+          <div class="project" data-title="Chat App" data-type="Chat">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a3d" alt="Chat App">
+            <div class="card">Chat App</div>
+          </div>
+
+          <div class="project" data-title="Personal Assistant Bot" data-type="Bot">
+            <img src="https://images.unsplash.com/photo-1692607431225-5f4564c8f132?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Personal Assistant">
+            <div class="card">Assistant Bot</div>
+          </div>
+
+          <div class="project" data-title="Restaurant Website" data-type="Restaurant">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f2e" alt="Restaurant">
+            <div class="card">Restaurant</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="section-inner about-grid">
+        <div class="about-card">
+          <h2 class="section-title">About Me</h2>
+          <p>I'm <strong>Siraj Khan Achakzai</strong>, a Frontend Developer and Designer based in Quetta, Pakistan. I design and build production-ready frontends, mobile apps and intelligent chatbots.</p>
+          <p style="color:var(--muted);margin-top:12px">Tools: HTML, CSS, JavaScript, React, React Native, Node.js, TensorFlow (teachable machine), Dialogflow/Watson and design in Figma.</p>
+        </div>
+        <div class="about-photo"><img src="siraj.jpg" alt="Siraj"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="section-inner">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-wrap">
+          <div class="contact-card">
+            <div class="contact-line"><i class="fa fa-map-marker-alt"></i><div><strong>Location</strong><div style="color:var(--muted)">Quetta, Pakistan</div></div></div>
+            <div class="contact-line"><i class="fa fa-envelope"></i><div><strong>Email</strong><div style="color:var(--muted)">sirajkhanachakzai67@gmail.com</div></div></div>
+            <div class="contact-line"><i class="fa fa-phone"></i><div><strong>Phone</strong><div style="color:var(--muted)">+92 000 000000</div></div></div>
+            <div style="margin-top:10px"><strong>Credentials</strong><div style="color:var(--muted);margin-top:6px">Frontend Dev • UI/UX • Chatbot Engineer</div></div>
+            <div class="socials"><a href="https://github.com/sirajkhanachakzai" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:sirajkhanachakzai67@gmail.com" title="Email"><i class="fa fa-envelope"></i></a></div>
+          </div>
+
+          <div class="contact-card contact-form">
+            <form id="contactForm">
+              <input id="name" type="text" placeholder="Your name" required />
+              <input id="email" type="email" placeholder="Your email" required />
+              <textarea id="message" rows="5" placeholder="How can I help you?" required></textarea>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px"><div id="status" style="color:var(--muted)"></div><button type="submit" class="btn-primary btn">Send Message</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="reveal">
+      <div class="section-inner" style="text-align:center">
+        <div style="font-weight:700">© <span id="year"></span> Siraj Khan Achakzai</div>
+        <div class="footer-credits">Design & build by Siraj Khan Achakzai — All rights reserved.</div>
+        <div class="footer-socials"><a href="https://github.com/sirajkhanachakzai" target="_blank">GH</a><a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank">LI</a><a href="mailto:sirajkhanachakzai67@gmail.com">@</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Preview modal -->
+  <div id="preview" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:300;padding:20px">
+    <div style="max-width:1100px;width:100%;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(12,16,24,0.5)">
+      <div id="previewImg" style="height:520px;background:#eee"></div>
+      <div style="padding:18px;display:flex;justify-content:space-between;align-items:center"><div><h3 id="previewTitle" style="margin:0"></h3><div id="previewType" style="color:var(--muted)"></div></div><div><button id="closePreviewBtn" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(12,16,24,0.06);background:transparent;cursor:pointer">Close</button></div></div>
     </div>
-  );
-}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        // year
+        var yearEl = document.getElementById('year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // reveal on scroll
+        var revealObs = new IntersectionObserver(function(entries){ entries.forEach(function(ent){ if(ent.isIntersecting){ ent.target.classList.add('in'); } }); }, {threshold:0.12});
+        document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+        // nav active on scroll
+        var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+        var navlinks = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+        var sectionObserver = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            var id = entry.target.id;
+            var link = document.querySelector('nav a[href="#'+id+'"]');
+            if(entry.isIntersecting){
+              navlinks.forEach(function(n){ n.classList.remove('active'); });
+              if(link) link.classList.add('active');
+            }
+          });
+        }, {threshold:0.55});
+        sections.forEach(function(s){ sectionObserver.observe(s); });
+
+        // smooth scroll with header offset
+        var navAnchors = document.querySelectorAll('nav a');
+        navAnchors.forEach(function(a){
+          a.addEventListener('click', function(e){
+            e.preventDefault();
+            var id = a.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if(!el) return;
+            var header = document.querySelector('header');
+            var headerOffset = header ? header.offsetHeight + 12 : 84;
+            var rect = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: rect, behavior: 'smooth' });
+          });
+        });
+
+        // project preview
+        var preview = document.getElementById('preview'); var previewImg = document.getElementById('previewImg'); var previewTitle = document.getElementById('previewTitle'); var previewType = document.getElementById('previewType'); var closePreviewBtn = document.getElementById('closePreviewBtn');
+        function openPreviewFromEl(el){
+          try{
+            var img = (el.querySelector('img') && el.querySelector('img').src) || '';
+            var title = el.getAttribute('data-title') || '';
+            var type = el.getAttribute('data-type') || '';
+            previewImg.innerHTML = '<img src="'+img+'" style="width:100%;height:100%;object-fit:cover;display:block" alt="'+(title||'preview')+'">';
+            previewTitle.textContent = title;
+            previewType.textContent = type;
+            preview.style.display = 'grid';
+          }catch(err){ console.error('openPreview error', err); }
+        }
+        document.querySelectorAll('.project').forEach(function(p){ p.addEventListener('click', function(){ openPreviewFromEl(p); }); });
+        function closePreview(){ preview.style.display = 'none'; }
+        closePreviewBtn && closePreviewBtn.addEventListener('click', closePreview);
+        preview.addEventListener('click', function(e){ if(e.target===preview){ closePreview(); } });
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
+
+        // contact form (mailto fallback) - safe newline escaping
+        var contactForm = document.getElementById('contactForm');
+        contactForm && contactForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          var name = document.getElementById('name').value.trim();
+          var email = document.getElementById('email').value.trim();
+          var message = document.getElementById('message').value.trim();
+          var status = document.getElementById('status');
+          if(!name||!email||!message){ if(status) status.textContent='Please fill all fields'; return; }
+          var subject = 'Message from ' + name;
+          var body = message + '\n\n---\n' + name + ' — ' + email;
+          window.location.href = 'mailto:sirajkhanachakzai67@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          if(status) status.textContent='Opening mail client...';
+        });
+
+      }catch(err){ console.error('Portfolio init error:', err); }
+    });
+  </script>
+</body>
+</html>
