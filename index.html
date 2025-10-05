@@ -4,104 +4,183 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Siraj Khan Achakzai — Portfolio</title>
-  <meta name="description" content="Siraj Khan Achakzai — Frontend Developer & Designer" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Siraj Khan Achakzai — Web & AI Developer. Crafting intelligent interfaces that merge design, technology, and AI." />
+  <meta property="og:title" content="Siraj Khan Achakzai — Web & AI Developer">
+  <meta property="og:description" content="Crafting intelligent interfaces that merge design, technology, and AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://sirajkhanachakzai.netlify.app/og-image.jpg">
+  <meta name="theme-color" content="#0f1724" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fav (small SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23ff3d81'/%3E%3Ctext x='50' y='57' font-size='42' fill='white' font-family='Sora,Inter,Arial' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+
   <style>
     :root{
-      --bg:#fff7fb;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent1:#ff6bcb; /* pink */
-      --accent2:#ff3d81; /* magenta */
-      --glass: rgba(255,107,203,0.08);
-      --radius:14px;
-      --maxw:1200px;
+      --bg-start:#0f0f1a; --bg-end:#191926;
+      --text:#f8fafc;
+      --muted:#9aa6bf;
+      --accent-s:#3b82f6; --accent-e:#ff3d81;
+      --accent-grad:linear-gradient(90deg,var(--accent-s),var(--accent-e));
+      --radius:14px; --maxw:1200px;
+      --ease-cinematic: cubic-bezier(.18,.9,.24,1);
+      --ease-soft: cubic-bezier(.2,.9,.25,1);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#fff7fb,#fff0f6);color:#0f1724;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);min-height:100vh;overflow-x:hidden;
+      background:
+        radial-gradient(600px 260px at 8% 12%, rgba(59,130,246,0.04), transparent),
+        radial-gradient(520px 220px at 92% 84%, rgba(255,61,129,0.03), transparent),
+        linear-gradient(180deg,var(--bg-start),var(--bg-end));
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      position:relative;
+    }
+
+    /* Aurora blobs behind everything */
+    .aurora{position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:0.78}
+    .aurora .blob{position:absolute;filter:blur(84px);will-change:transform,opacity;opacity:0.78}
+    .aurora .b1{width:620px;height:620px;left:-10%;top:4%;background:radial-gradient(circle at 30% 30%, var(--accent-e), transparent 45%);animation:drift1 14s var(--ease-cinematic) infinite}
+    .aurora .b2{width:480px;height:480px;right:-8%;bottom:6%;background:radial-gradient(circle at 70% 70%, var(--accent-s), transparent 42%);animation:drift2 12s var(--ease-cinematic) infinite}
+    @keyframes drift1{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(5deg)}100%{transform:translateY(0) rotate(0)}}
+    @keyframes drift2{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(18px) rotate(-6deg)}100%{transform:translateY(0) rotate(0)}}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px;position:relative;z-index:6}
 
     /* Header */
-    header{position:fixed;inset:0 0 auto 0;height:72px;background:rgba(255,255,255,0.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:120;box-shadow:0 8px 30px rgba(12,16,24,0.06)}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:grid;place-items:center;color:white;font-weight:700}
+    header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:120;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:var(--accent-grad);display:grid;place-items:center;color:white;font-weight:800;font-family:Sora}
     nav{display:flex;gap:18px;align-items:center}
-    nav a{position:relative;text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:10px;font-weight:600}
-    nav a:hover{color:var(--accent2)}
-    nav a.active{color:var(--accent2);}
-    nav a.active::after{content:'';position:absolute;left:8px;right:8px;height:3px;background:linear-gradient(90deg,var(--accent1),var(--accent2));bottom:-8px;border-radius:3px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600;font-size:15px}
+    nav a:hover{color:var(--text)}
+    nav a.active{color:var(--text);background:rgba(255,255,255,0.02)}
 
-    /* Sections */
-    main{padding-top:96px}
+    /* progress bar */
+    #progress{position:fixed;left:0;top:0;height:3px;background:var(--accent-grad);width:0;z-index:140;transition:width 160ms linear}
+
+    /* sections */
+    main{padding-top:108px;position:relative;z-index:4}
     section{padding:56px 20px}
     .section-inner{max-width:1100px;margin:0 auto}
-    .section-title{font-size:28px;text-align:center;margin-bottom:18px}
+    .section-title{font-family:Sora;font-size:28px;margin-bottom:8px;color:var(--text);text-align:center}
+    .section-sub{color:var(--muted);text-align:center;margin-bottom:20px;max-width:60ch;margin-left:auto;margin-right:auto}
 
-    /* Hero */
+    /* hero */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;min-height:70vh}
-    @media(max-width:940px){.hero{grid-template-columns:1fr}}
-    .hero h1{font-size:40px;margin:6px 0}
-    .lead{color:var(--muted);max-width:56ch}
-    .cta-row{margin-top:18px;display:flex;gap:12px}
-    .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
-    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white}
-    .hero-img{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(255,61,129,0.08)}
-    .hero-img img{width:100%;height:100%;object-fit:cover;display:block;min-height:320px}
+    @media(max-width:940px){.hero{grid-template-columns:1fr}.hero-img{order:-1}}
+    .eyebrow{color:var(--muted);letter-spacing:1px;font-weight:600;font-size:13px}
+    .hero h1{font-family:Sora;font-size:46px;margin:6px 0;line-height:1.02}
+    .name-gradient{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;font-weight:800}
+    .lead{color:var(--muted);max-width:56ch;margin-top:12px}
+    .cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer;background:transparent;color:var(--text);transition:transform 420ms var(--ease-cinematic), box-shadow 420ms var(--ease-cinematic)}
+    .btn-primary{background:var(--accent-grad);box-shadow:0 18px 50px rgba(59,130,246,0.08)}
+    .btn-ghost{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    .btn-primary:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(59,130,246,0.1)}
+    .btn-ghost:hover{transform:translateY(-6px)}
 
-    /* Skills */
+    .hero-img{border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03);min-height:320px;transition:transform 900ms var(--ease-cinematic)}
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center center;transition:transform 900ms var(--ease-cinematic)}
+
+    /* skill cards */
     .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
     @media(max-width:1000px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.skills-grid{grid-template-columns:1fr}}
-    .skill-card{background:linear-gradient(180deg,#fff,#fff7fb);padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(12,16,24,0.06);text-align:center;transition:transform .28s,box-shadow .28s}
-    .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(12,16,24,0.08)}
-    .skill-icon{width:86px;height:86px;border-radius:999px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(180deg,rgba(255,107,203,0.12),rgba(255,61,129,0.06))}
+    .skill-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;box-shadow:0 10px 40px rgba(2,6,23,0.6);text-align:center;transition:transform 560ms var(--ease-soft),box-shadow 560ms var(--ease-soft)}
+    .skill-card:hover{transform:translateY(-10px);box-shadow:0 40px 80px rgba(59,130,246,0.06)}
+    .skill-icon{width:86px;height:86px;border-radius:999px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(180deg, rgba(59,130,246,0.08), rgba(255,61,129,0.06));color:var(--accent-e)}
 
-    /* Projects */
+    /* projects */
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
     @media(max-width:1000px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.projects-grid{grid-template-columns:1fr}}
-    .project{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .28s,box-shadow .28s}
-    .project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .6s}
+    .project{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 560ms var(--ease-soft),box-shadow 560ms var(--ease-soft)}
+    .project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 900ms var(--ease-cinematic)}
     .project:hover img{transform:scale(1.06)}
-    .project .card{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(255,107,203,0.14),rgba(255,61,129,0.08));padding:8px 12px;border-radius:999px;font-weight:700;color:#111}
+    .project .card{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(59,130,246,0.12),rgba(255,61,129,0.08));padding:8px 12px;border-radius:999px;font-weight:700;color:var(--text);backdrop-filter:blur(4px)}
 
-    /* About */
+    /* about */
     .about-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
     @media(max-width:900px){.about-grid{grid-template-columns:1fr}}
-    .about-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff7fb);box-shadow:0 12px 30px rgba(12,16,24,0.06)}
-    .about-photo{border-radius:14px;overflow:hidden}
-    .about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .about-card{padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 12px 30px rgba(2,6,23,0.6)}
+    .about-photo{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .about-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 900ms var(--ease-cinematic)}
 
-    /* Contact */
+    /* contact */
     .contact-wrap{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
     @media(max-width:980px){.contact-wrap{grid-template-columns:1fr}}
-    .contact-card{background:linear-gradient(180deg,#fff,#fff7fb);padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(12,16,24,0.06)}
+    .contact-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.6)}
     .contact-line{display:flex;gap:12px;align-items:center;color:var(--muted);margin-bottom:12px}
-    .contact-line i{color:var(--accent2);min-width:28px;text-align:center}
+    .contact-line i{color:var(--accent-e);min-width:28px;text-align:center}
     .socials{display:flex;gap:10px;margin-top:12px}
-    .socials a{display:inline-flex;align-items:center;justify-content:center;padding:10px;border-radius:10px;background:white;box-shadow:0 8px 20px rgba(12,16,24,0.06);text-decoration:none;color:var(--muted)}
-    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(12,16,24,0.06)}
-    .contact-form button{padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:700}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);text-decoration:none;color:var(--muted)}
 
-    /* Footer */
-    footer{padding:28px 18px;text-align:center;background:transparent}
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)}
+    .contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,0.35)}
+    .contact-form button{padding:12px;border-radius:10px;border:0;background:var(--accent-grad);color:white;font-weight:700;cursor:pointer;transition:transform 420ms var(--ease-cinematic)}
+    .contact-form button:hover{transform:translateY(-6px)}
+
+    /* CTA bar */
+    .cta-bar{margin-top:28px;padding:22px;border-radius:12px;background:linear-gradient(90deg, rgba(59,130,246,0.06), rgba(255,61,129,0.04));display:flex;align-items:center;justify-content:space-between}
+    @media(max-width:720px){.cta-bar{flex-direction:column;align-items:stretch;text-align:center}}
+    .cta-bar h3{margin:0;font-family:Sora;font-size:18px}
+    .cta-actions{display:flex;gap:12px}
+
+    /* footer */
+    footer{padding:28px 18px;text-align:center;background:transparent;margin-top:24px}
     .footer-credits{color:var(--muted);margin-top:8px}
     .footer-socials{display:flex;gap:10px;justify-content:center;margin-top:12px}
-    .footer-socials a{padding:10px;border-radius:10px;background:#111;color:#fff;text-decoration:none}
+    .footer-socials a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--text);text-decoration:none}
 
-    /* Reveal */
-    .reveal{opacity:0;transform:translateY(18px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    /* reveal utils */
+    .reveal{opacity:0;transform:translateY(24px);transition:all 760ms var(--ease-cinematic)}
     .reveal.in{opacity:1;transform:none}
+    .intro-fade{opacity:0;transform:translateY(8px);transition:all 720ms var(--ease-cinematic)}
+    .intro-fade.in{opacity:1;transform:none}
 
-    @media(max-width:520px){.hero h1{font-size:26px}}
+    /* cursor */
+    .cursor{position:fixed;pointer-events:none;z-index:9999;width:36px;height:36px;border-radius:50%;transform:translate3d(-50%,-50%,0) scale(1);transition:width 200ms var(--ease-soft),height 200ms var(--ease-soft),transform 200ms var(--ease-soft),opacity 200ms var(--ease-soft);display:grid;place-items:center;background:radial-gradient(circle at 35% 35%, rgba(255,255,255,0.12), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:0 14px 40px rgba(59,130,246,0.08)}
+    .cursor.small{width:12px;height:12px;background:rgba(255,255,255,0.04);box-shadow:none;border:1px solid rgba(255,255,255,0.03)}
+    .interactive:hover ~ .cursor, .interactive:active ~ .cursor{transform:translate3d(-50%,-50%,0) scale(1.28)}
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media(max-width:520px){.hero h1{font-size:26px}.logo{width:44px;height:44px}}
   </style>
 </head>
 <body>
+  <!-- Aurora -->
+  <div class="aurora" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+  </div>
+
+  <!-- progress -->
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- cursor -->
+  <div id="cursor" class="cursor" aria-hidden="true"></div>
+
   <header>
-    <div class="brand"><div class="logo">SK</div><div><div style="font-weight:700">Siraj Khan Achakzai</div><div style="font-size:12px;color:var(--muted)">Frontend Developer & Designer</div></div></div>
-    <nav id="mainNav">
+    <div class="brand" role="banner">
+      <div class="logo" aria-hidden="true">SK</div>
+      <div>
+        <div style="font-weight:700;font-family:Sora">Siraj Khan Achakzai</div>
+        <div style="font-size:12px;color:var(--muted)">Web & AI Developer</div>
+      </div>
+    </div>
+
+    <nav id="mainNav" role="navigation" aria-label="Main navigation">
       <a href="#home" class="navlink">Home</a>
       <a href="#skills" class="navlink">Skills</a>
       <a href="#projects" class="navlink">Projects</a>
@@ -110,76 +189,91 @@
     </nav>
   </header>
 
-  <main class="wrap">
+  <main class="wrap" id="maincontent" role="main">
     <!-- HOME -->
-    <section id="home" class="reveal">
+    <section id="home" class="reveal" aria-labelledby="home-title">
       <div class="section-inner hero">
         <div>
-          <div class="eyebrow">Crafting interfaces</div>
-          <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">Siraj Khan Achakzai</span></h1>
-          <p class="lead">I build modern, responsive web & mobile experiences — landing pages, e-commerce, chatbots and AI assistants. I focus on beautiful design, accessibility and performance.</p>
-          <div class="cta-row"><a class="btn btn-primary" href="#projects">See Projects</a><a class="btn" href="#contact">Contact Me</a></div>
+          <div class="eyebrow">Crafting intelligent interfaces</div>
+          <h1 id="home-title"><span class="intro-fade">Hi, I'm</span> <span class="name-gradient intro-fade" style="display:inline-block;margin-left:10px">Siraj Khan Achakzai</span></h1>
+          <p class="lead intro-fade">Crafting intelligent interfaces that merge design, technology, and AI. I build modern, responsive web & mobile experiences — landing pages, e-commerce, chatbots and AI assistants with attention to design, accessibility and clarity.</p>
+          <div class="cta-row intro-fade">
+            <a class="btn btn-primary interactive" href="#projects" aria-label="See projects">See Projects</a>
+            <a class="btn btn-ghost interactive" href="#contact" aria-label="Contact me">Let’s Build Something Exceptional</a>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap" aria-hidden="true">
+            <div style="padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600;font-size:13px">React • UI</div>
+            <div style="padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600;font-size:13px">AI Chatbots</div>
+            <div style="padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600;font-size:13px">Figma</div>
+          </div>
         </div>
-        <div class="hero-img"><img src="https://images.pexels.com/photos/5496459/pexels-photo-5496459.jpeg" alt="workspace"></div>
+
+        <div class="hero-img" aria-hidden="true">
+          <img src="https://images.pexels.com/photos/5496459/pexels-photo-5496459.jpeg" alt="Workspace with laptop and coffee" loading="lazy">
+        </div>
       </div>
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="reveal">
+    <section id="skills" class="reveal" aria-labelledby="skills-title">
       <div class="section-inner">
-        <h2 class="section-title">Core Skills</h2>
+        <h2 id="skills-title" class="section-title">Core Skills</h2>
+        <p class="section-sub">Design-driven web & mobile interfaces, AI assistants and production-ready frontends — focused on usable, maintainable results.</p>
         <div class="skills-grid">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fa fa-code" style="font-size:28px;color:var(--accent2)"></i></div>
+            <div class="skill-icon" aria-hidden="true"><i class="fa fa-code" style="font-size:28px;color:var(--accent-e)"></i></div>
             <h4>Web Development</h4>
-            <p style="color:var(--muted)">Crafting fast, modern, and responsive websites using HTML, CSS and JavaScript frameworks.</p>
+            <p style="color:var(--muted)">Fast, modern, responsive websites — HTML, CSS, JS and modern front-end patterns.</p>
           </div>
           <div class="skill-card">
-            <div class="skill-icon"><i class="fa fa-mobile-screen-button" style="font-size:28px;color:var(--accent2)"></i></div>
-            <h4>Mobile App Development</h4>
-            <p style="color:var(--muted)">Designing intuitive and scalable mobile apps (React Native, Flutter) with great UX.</p>
+            <div class="skill-icon" aria-hidden="true"><i class="fa fa-mobile-screen-button" style="font-size:28px;color:var(--accent-e)"></i></div>
+            <h4>Mobile Apps</h4>
+            <p style="color:var(--muted)">React Native & cross-platform UI with attention to UX and performance.</p>
           </div>
           <div class="skill-card">
-            <div class="skill-icon"><i class="fa fa-robot" style="font-size:28px;color:var(--accent2)"></i></div>
-            <h4>Chatbot Development</h4>
-            <p style="color:var(--muted)">Building intelligent AI-driven chatbots, intent design and integration with APIs.</p>
+            <div class="skill-icon" aria-hidden="true"><i class="fa fa-robot" style="font-size:28px;color:var(--accent-e)"></i></div>
+            <h4>AI & Chatbots</h4>
+            <p style="color:var(--muted)">Dialogflow, Teachable Machine, and building conversational flows & integrations.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="reveal">
+    <section id="projects" class="reveal" aria-labelledby="projects-title">
       <div class="section-inner">
-        <h2 class="section-title">Selected Projects</h2>
+        <h2 id="projects-title" class="section-title">Selected Projects</h2>
+        <p class="section-sub">Small, focused showcases that demonstrate product thinking and polished UI — click to preview.</p>
+
         <div class="projects-grid">
           <div class="project" data-title="Landing Page" data-type="Landing">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f8b" alt="Landing Page">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Landing Page preview">
             <div class="card">Landing</div>
           </div>
 
           <div class="project" data-title="E-commerce Website" data-type="Ecommerce">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d9a" alt="Ecommerce">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop" alt="E-commerce preview">
             <div class="card">E-commerce</div>
           </div>
 
           <div class="project" data-title="Teachable Machine" data-type="ML">
-            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=806&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Teachable Machine">
-            <div class="card">Teachable Machine</div>
+            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=806&auto=format&fit=crop" alt="ML preview">
+            <div class="card">ML</div>
           </div>
 
           <div class="project" data-title="Chat App" data-type="Chat">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a3d" alt="Chat App">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop" alt="Chat app preview">
             <div class="card">Chat App</div>
           </div>
 
           <div class="project" data-title="Personal Assistant Bot" data-type="Bot">
-            <img src="https://images.unsplash.com/photo-1692607431225-5f4564c8f132?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Personal Assistant">
+            <img src="https://images.unsplash.com/photo-1692607431225-5f4564c8f132?q=80&w=1032&auto=format&fit=crop" alt="Assistant preview">
             <div class="card">Assistant Bot</div>
           </div>
 
           <div class="project" data-title="Restaurant Website" data-type="Restaurant">
-            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f2e" alt="Restaurant">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop" alt="Restaurant preview">
             <div class="card">Restaurant</div>
           </div>
         </div>
@@ -187,69 +281,105 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="reveal">
+    <section id="about" class="reveal" aria-labelledby="about-title">
       <div class="section-inner about-grid">
         <div class="about-card">
-          <h2 class="section-title">About Me</h2>
-          <p>I'm <strong>Siraj Khan Achakzai</strong>, a Frontend Developer and Designer based in Quetta, Pakistan. I design and build production-ready frontends, mobile apps and intelligent chatbots.</p>
-          <p style="color:var(--muted);margin-top:12px">Tools: HTML, CSS, JavaScript, React, React Native, Node.js, TensorFlow (teachable machine), Dialogflow/Watson and design in Figma.</p>
+          <h2 id="about-title" class="section-title">About Me</h2>
+          <p>I'm <strong>Siraj Khan Achakzai</strong> — a Web & AI developer from Quetta, Pakistan. I love turning complex ideas into simple, elegant products. My work sits at the intersection of design and engineering: clean interfaces, thoughtful interactions, and AI features that feel helpful, not noisy.</p>
+          <p style="color:var(--muted);margin-top:12px">I focus on building production-ready frontends, mobile apps and conversational systems. Tools I use: HTML, CSS, JavaScript, React (for some projects), React Native, Node.js, Teachable Machine, Dialogflow, and Figma.</p>
+          <p style="margin-top:14px;color:var(--muted)"><strong>Approach:</strong> craft, iterate, measure. I design for clarity, build for maintainability, and ship with care.</p>
         </div>
-        <div class="about-photo"><img src="siraj.jpg" alt="Siraj"></div>
+
+        <div class="about-photo" aria-hidden="true">
+          <img src="siraj.jpg" alt="Siraj Khan Achakzai portrait" loading="lazy">
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="reveal">
+    <section id="contact" class="reveal" aria-labelledby="contact-title">
       <div class="section-inner">
-        <h2 class="section-title">Contact</h2>
+        <h2 id="contact-title" class="section-title">Contact</h2>
+        <p class="section-sub">Let's build something meaningful. I usually reply within a couple of Hours.</p>
+
         <div class="contact-wrap">
           <div class="contact-card">
-            <div class="contact-line"><i class="fa fa-map-marker-alt"></i><div><strong>Location</strong><div style="color:var(--muted)">Quetta, Pakistan</div></div></div>
-            <div class="contact-line"><i class="fa fa-envelope"></i><div><strong>Email</strong><div style="color:var(--muted)">sirajkhanachakzai67@gmail.com</div></div></div>
-            <div class="contact-line"><i class="fa fa-phone"></i><div><strong>Phone</strong><div style="color:var(--muted)">+92 000 000000</div></div></div>
+            <div class="contact-line"><i class="fa fa-map-marker-alt" aria-hidden="true"></i><div><strong>Location</strong><div style="color:var(--muted)">Quetta, Pakistan</div></div></div>
+            <div class="contact-line"><i class="fa fa-envelope" aria-hidden="true"></i><div><strong>Email</strong><div style="color:var(--muted)">sirajkhanachakzai67@gmail.com</div></div></div>
+            <div class="contact-line"><i class="fa fa-phone" aria-hidden="true"></i><div><strong>Phone</strong><div style="color:var(--muted)">+92 000 000000</div></div></div>
+
             <div style="margin-top:10px"><strong>Credentials</strong><div style="color:var(--muted);margin-top:6px">Frontend Dev • UI/UX • Chatbot Engineer</div></div>
-            <div class="socials"><a href="https://github.com/sirajkhanachakzai" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:sirajkhanachakzai67@gmail.com" title="Email"><i class="fa fa-envelope"></i></a></div>
+
+            <div class="socials" aria-label="Social links">
+              <a href="https://github.com/sirajkhanachakzai" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+              <a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+              <a href="mailto:sirajkhanachakzai67@gmail.com"><i class="fa fa-envelope"></i></a>
+            </div>
           </div>
 
           <div class="contact-card contact-form">
             <form id="contactForm">
+              <label class="sr-only" for="name">Your name</label>
               <input id="name" type="text" placeholder="Your name" required />
+              <label class="sr-only" for="email">Your email</label>
               <input id="email" type="email" placeholder="Your email" required />
+              <label class="sr-only" for="message">Message</label>
               <textarea id="message" rows="5" placeholder="How can I help you?" required></textarea>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px"><div id="status" style="color:var(--muted)"></div><button type="submit" class="btn-primary btn">Send Message</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+                <div id="status" style="color:var(--muted)"></div>
+                <button type="submit" class="btn-primary btn">Send Message</button>
+              </div>
             </form>
           </div>
         </div>
+
+        <div class="cta-bar" role="region" aria-label="Call to action">
+          <h3>Ready to build something impactful?</h3>
+          <div class="cta-actions">
+            <a class="btn btn-primary interactive" href="#contact">Let's Talk</a>
+            <a class="btn btn-ghost interactive" href="mailto:sirajkhanachakzai67@gmail.com">Email Me</a>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="reveal">
+    <footer class="reveal" role="contentinfo">
       <div class="section-inner" style="text-align:center">
         <div style="font-weight:700">© <span id="year"></span> Siraj Khan Achakzai</div>
         <div class="footer-credits">Design & build by Siraj Khan Achakzai — All rights reserved.</div>
-        <div class="footer-socials"><a href="https://github.com/sirajkhanachakzai" target="_blank">GH</a><a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank">LI</a><a href="mailto:sirajkhanachakzai67@gmail.com">@</a></div>
+        <div class="footer-socials" aria-hidden="true"><a href="https://github.com/sirajkhanachakzai" target="_blank" rel="noopener">GH</a><a href="https://pk.linkedin.com/in/sirajkhanachakzai" target="_blank" rel="noopener">LI</a><a href="mailto:sirajkhanachakzai67@gmail.com">@</a></div>
       </div>
     </footer>
-
   </main>
 
-  <!-- Preview modal -->
-  <div id="preview" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:300;padding:20px">
-    <div style="max-width:1100px;width:100%;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(12,16,24,0.5)">
-      <div id="previewImg" style="height:520px;background:#eee"></div>
-      <div style="padding:18px;display:flex;justify-content:space-between;align-items:center"><div><h3 id="previewTitle" style="margin:0"></h3><div id="previewType" style="color:var(--muted)"></div></div><div><button id="closePreviewBtn" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(12,16,24,0.06);background:transparent;cursor:pointer">Close</button></div></div>
+  <!-- preview modal -->
+  <div id="preview" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:300;padding:20px" role="dialog" aria-modal="true" aria-hidden="true">
+    <div style="max-width:1100px;width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(2,6,23,0.8)">
+      <div id="previewImg" style="height:520px;background:#111"></div>
+      <div style="padding:18px;display:flex;justify-content:space-between;align-items:center">
+        <div><h3 id="previewTitle" style="margin:0"></h3><div id="previewType" style="color:var(--muted)"></div></div>
+        <div><button id="closePreviewBtn" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer;color:var(--text)">Close</button></div>
+      </div>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    (function(){
       try{
         // year
         var yearEl = document.getElementById('year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
 
+        // staggered intro for hero text
+        window.addEventListener('load', function(){
+          document.querySelectorAll('.intro-fade').forEach(function(el, i){
+            setTimeout(function(){ el.classList.add('in'); }, 240 + i*160);
+          });
+        });
+
         // reveal on scroll
-        var revealObs = new IntersectionObserver(function(entries){ entries.forEach(function(ent){ if(ent.isIntersecting){ ent.target.classList.add('in'); } }); }, {threshold:0.12});
+        var revealObs = new IntersectionObserver(function(entries){ entries.forEach(function(ent){ if(ent.isIntersecting){ ent.target.classList.add('in'); } }); }, {threshold:0.14});
         document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
 
         // nav active on scroll
@@ -276,7 +406,7 @@
             var el = document.getElementById(id);
             if(!el) return;
             var header = document.querySelector('header');
-            var headerOffset = header ? header.offsetHeight + 12 : 84;
+            var headerOffset = header ? header.offsetHeight + 16 : 84;
             var rect = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({ top: rect, behavior: 'smooth' });
           });
@@ -293,15 +423,16 @@
             previewTitle.textContent = title;
             previewType.textContent = type;
             preview.style.display = 'grid';
+            preview.setAttribute('aria-hidden','false');
           }catch(err){ console.error('openPreview error', err); }
         }
         document.querySelectorAll('.project').forEach(function(p){ p.addEventListener('click', function(){ openPreviewFromEl(p); }); });
-        function closePreview(){ preview.style.display = 'none'; }
+        function closePreview(){ preview.style.display = 'none'; preview.setAttribute('aria-hidden','true'); }
         closePreviewBtn && closePreviewBtn.addEventListener('click', closePreview);
         preview.addEventListener('click', function(e){ if(e.target===preview){ closePreview(); } });
         document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
 
-        // contact form (mailto fallback) - safe newline escaping
+        // contact form (mailto fallback)
         var contactForm = document.getElementById('contactForm');
         contactForm && contactForm.addEventListener('submit', function(e){
           e.preventDefault();
@@ -316,8 +447,40 @@
           if(status) status.textContent='Opening mail client...';
         });
 
+        // progress bar
+        var progress = document.getElementById('progress');
+        function updateProgress(){ var h = document.documentElement; var percent = (h.scrollTop || document.body.scrollTop) / ((h.scrollHeight - h.clientHeight) || 1); progress.style.width = Math.round(percent * 100) + '%'; }
+        document.addEventListener('scroll', updateProgress, {passive:true});
+        updateProgress();
+
+        // custom cursor
+        var cursor = document.getElementById('cursor');
+        var mouse = {x:window.innerWidth/2, y:window.innerHeight/2};
+        window.addEventListener('mousemove', function(e){
+          mouse.x = e.clientX; mouse.y = e.clientY;
+          cursor.style.left = mouse.x + 'px'; cursor.style.top = mouse.y + 'px';
+        });
+        // enlarge cursor on interactive hover
+        var interactives = document.querySelectorAll('a, button, .project, .skill-card, .contact-form input, .contact-form textarea');
+        interactives.forEach(function(el){
+          el.addEventListener('mouseenter', function(){ cursor.style.transform = 'translate3d(-50%,-50%,0) scale(1.28)'; cursor.style.opacity = '1'; });
+          el.addEventListener('mouseleave', function(){ cursor.style.transform = 'translate3d(-50%,-50%,0) scale(1)'; cursor.style.opacity = '0.95'; });
+        });
+
+        // gentle parallax for hero image
+        var heroImg = document.querySelector('.hero-img img');
+        if(heroImg){
+          window.addEventListener('scroll', function(){
+            var heroEl = document.querySelector('.hero');
+            if(!heroEl) return;
+            var rect = heroEl.getBoundingClientRect();
+            var offset = Math.max(-40, Math.min(40, -rect.top / 16));
+            heroImg.style.transform = 'translateY(' + (offset*0.36) + 'px) scale(1)';
+          }, {passive:true});
+        }
+
       }catch(err){ console.error('Portfolio init error:', err); }
-    });
+    })();
   </script>
 </body>
 </html>
