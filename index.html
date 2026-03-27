@@ -3,31 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siraj Khan Achakzai</title>
+<title>Siraj Khan Achakzai — Elite Portfolio</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#0f1724;
-  color:white;
+
+/* ================= ROOT ================= */
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --grad:linear-gradient(90deg,#3b82f6,#ff3d81);
 }
 
-/* Navbar */
+/* ================= GLOBAL ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial;
+  background:linear-gradient(180deg,#0f0f1a,#191926);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
 header{
-  padding:15px;
-  text-align:center;
-  background:#020617;
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.4);
+  z-index:999;
+}
+
+.logo{
+  font-weight:bold;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+nav a{
+  margin:0 10px;
+  color:var(--muted);
+  text-decoration:none;
   font-weight:bold;
 }
 
-/* Section */
-section{
-  padding:40px 20px;
-  text-align:center;
+nav a:hover{
+  color:white;
 }
 
-/* Projects */
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  flex-direction:column;
+}
+
+.hero h1{
+  font-size:55px;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:fadeIn 1s ease;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:600px;
+  margin-top:10px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1}
+}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:80px 20px;
+}
+
+.title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:30px;
+}
+
+/* ================= PROJECTS ================= */
 .projects{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -35,45 +105,116 @@ section{
 }
 
 .project{
-  background:#020617;
-  padding:15px;
-  border-radius:12px;
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  transition:.4s;
+}
+
+.project:hover{
+  transform:translateY(-15px);
+  box-shadow:0 40px 120px rgba(59,130,246,0.2);
 }
 
 .project img{
   width:100%;
-  border-radius:10px;
+  height:180px;
+  object-fit:cover;
+}
+
+.project-content{
+  padding:15px;
+}
+
+.project h3{
+  margin-bottom:8px;
+}
+
+.project p{
+  color:var(--muted);
+  font-size:14px;
 }
 
 .btn{
   display:inline-block;
-  margin:8px;
   padding:8px 12px;
   border-radius:8px;
+  margin-top:10px;
   text-decoration:none;
-  font-size:14px;
 }
 
 .primary{background:#3b82f6;color:white;}
 .ghost{background:#111;color:white;}
 
-/* Chatbot */
+/* ================= SKILLS ================= */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.skill{
+  padding:20px;
+  background:var(--card);
+  border-radius:12px;
+  text-align:center;
+  transition:.3s;
+}
+
+.skill:hover{
+  transform:translateY(-10px);
+}
+
+/* ================= ABOUT ================= */
+.about{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* ================= CONTACT ================= */
+.contact{
+  max-width:500px;
+  margin:auto;
+}
+
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+}
+
+button{
+  padding:10px;
+  width:100%;
+  border:none;
+  background:var(--grad);
+  color:white;
+  font-weight:bold;
+}
+
+/* ================= CHATBOT ================= */
 #chatToggle{
   position:fixed;
   bottom:20px;
   right:20px;
   width:60px;height:60px;
   border-radius:50%;
-  background:linear-gradient(90deg,#3b82f6,#ff3d81);
-  border:none;color:white;font-size:20px;
+  background:var(--grad);
+  border:none;
+  color:white;
+  font-size:20px;
 }
 
 #chatBox{
   position:fixed;
   bottom:90px;
   right:20px;
-  width:300px;height:400px;
-  background:#020617;
+  width:320px;height:420px;
+  background:var(--card);
   border-radius:12px;
   display:none;
   flex-direction:column;
@@ -81,95 +222,165 @@ section{
 
 .messages{
   flex:1;
-  padding:10px;
   overflow:auto;
+  padding:10px;
 }
 
-.msg{margin:5px;}
-.user{text-align:right;}
-.bot{text-align:left;}
+.msg{margin:6px}
+.user{text-align:right}
+.bot{text-align:left}
 
 .bubble{
+  padding:8px 12px;
+  border-radius:10px;
   display:inline-block;
-  padding:6px 10px;
-  border-radius:8px;
 }
 
-.user .bubble{background:#3b82f6;}
-.bot .bubble{background:#1f2937;}
+.user .bubble{background:#3b82f6}
+.bot .bubble{background:#1f2937}
 
-input{
-  width:70%;
-  padding:8px;
-  border:none;
+.chat-input{
+  display:flex;
 }
 
-button.send{
-  width:30%;
-  background:#3b82f6;
-  border:none;color:white;
+.chat-input input{
+  flex:1;
 }
+
+.chat-input button{
+  width:80px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  color:var(--muted);
+}
+
 </style>
 </head>
 
 <body>
 
-<header>Siraj Khan Achakzai — AI Developer 🤖</header>
+<header>
+  <div class="logo">Siraj</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<section>
-  <h2>My Projects 💼</h2>
-
-  <div class="projects">
-
-    <div class="project">
-      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d">
-      <h3>AI Social Media Tool</h3>
-      <a href="https://aisocialmediaautomation.netlify.app/" class="btn primary">Live</a>
-      <a href="https://github.com/sirajkhanachakzai/Social-Media-Lead-Automation-Tool" class="btn ghost">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>AI Student Assistant</h3>
-      <a href="https://ai-studentasistant.netlify.app/" class="btn primary">Live</a>
-      <a href="https://github.com/sirajkhanachakzai/Student-Ai-Assistant" class="btn ghost">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b">
-      <h3>Task Manager</h3>
-      <a href="https://modrentaskmanager.netlify.app/" class="btn primary">Live</a>
-      <a href="https://github.com/sirajkhanachakzai/Modern-Task-Manager" class="btn ghost">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="https://images.unsplash.com/photo-1551434678-e076c223a692">
-      <h3>LinkedIn AI Tool</h3>
-      <a href="https://ailinkdenspy.netlify.app/" class="btn primary">Live</a>
-      <a href="https://github.com/sirajkhanachakzai/AI-Powered-LinkedIn-Lead-Qualification" class="btn ghost">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb210b2">
-      <h3>Hotel System</h3>
-      <a href="https://aihotelmanagment.netlify.app/" class="btn primary">Live</a>
-      <a href="https://github.com/sirajkhanachakzai/Hotel-Management-System" class="btn ghost">Code</a>
-    </div>
-
-  </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>AI Developer 🚀</h1>
+  <p>Building intelligent systems, automation tools & modern web apps.</p>
 </section>
 
-<!-- Chatbot -->
+<!-- PROJECTS -->
+<section id="projects">
+<h2 class="title">Projects</h2>
+
+<div class="projects">
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d">
+<div class="project-content">
+<h3>AI Social Media Tool</h3>
+<p>Lead automation system</p>
+<a href="https://aisocialmediaautomation.netlify.app/" class="btn primary">Live</a>
+<a href="https://github.com/sirajkhanachakzai/Social-Media-Lead-Automation-Tool" class="btn ghost">Code</a>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1522202176988">
+<div class="project-content">
+<h3>Student AI Assistant</h3>
+<p>Smart study tool</p>
+<a href="https://ai-studentasistant.netlify.app/" class="btn primary">Live</a>
+<a href="https://github.com/sirajkhanachakzai/Student-Ai-Assistant" class="btn ghost">Code</a>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1484480974693">
+<div class="project-content">
+<h3>Task Manager</h3>
+<p>Modern productivity app</p>
+<a href="https://modrentaskmanager.netlify.app/" class="btn primary">Live</a>
+<a href="https://github.com/sirajkhanachakzai/Modern-Task-Manager" class="btn ghost">Code</a>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1551434678">
+<div class="project-content">
+<h3>LinkedIn AI Tool</h3>
+<p>Lead qualification AI</p>
+<a href="https://ailinkdenspy.netlify.app/" class="btn primary">Live</a>
+<a href="https://github.com/sirajkhanachakzai/AI-Powered-LinkedIn-Lead-Qualification" class="btn ghost">Code</a>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1501117716987">
+<div class="project-content">
+<h3>Hotel Management</h3>
+<p>AI system</p>
+<a href="https://aihotelmanagment.netlify.app/" class="btn primary">Live</a>
+<a href="https://github.com/sirajkhanachakzai/Hotel-Management-System" class="btn ghost">Code</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2 class="title">Skills</h2>
+<div class="skills">
+<div class="skill">HTML CSS JS</div>
+<div class="skill">React</div>
+<div class="skill">AI Automation</div>
+<div class="skill">Chatbots</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section>
+<div class="about">
+<h2>About Me</h2>
+<p>I am Siraj Khan Achakzai — building AI tools and modern interfaces.</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2 class="title">Contact</h2>
+<div class="contact">
+<input placeholder="Name">
+<input placeholder="Email">
+<textarea placeholder="Message"></textarea>
+<button>Send</button>
+</div>
+</section>
+
+<!-- CHATBOT -->
 <button id="chatToggle">💬</button>
 
 <div id="chatBox">
-  <div class="messages" id="messages"></div>
+<div class="messages" id="messages"></div>
 
-  <div>
-    <input id="input">
-    <button class="send" onclick="sendMsg()">Send</button>
-  </div>
+<div class="chat-input">
+<input id="input">
+<button onclick="sendMsg()">Send</button>
 </div>
+</div>
+
+<footer>© 2026 Siraj Khan Achakzai</footer>
 
 <script>
 const toggle=document.getElementById("chatToggle");
@@ -177,38 +388,40 @@ const chatBox=document.getElementById("chatBox");
 const messages=document.getElementById("messages");
 const input=document.getElementById("input");
 
-toggle.onclick=()=>chatBox.style.display=
+toggle.onclick=()=>{
+chatBox.style.display=
 chatBox.style.display==="flex"?"none":"flex";
+}
 
 function addMsg(text,type){
-  let div=document.createElement("div");
-  div.className="msg "+type;
-  div.innerHTML=`<div class="bubble">${text}</div>`;
-  messages.appendChild(div);
-  messages.scrollTop=messages.scrollHeight;
+let d=document.createElement("div");
+d.className="msg "+type;
+d.innerHTML=`<div class="bubble">${text}</div>`;
+messages.appendChild(d);
+messages.scrollTop=messages.scrollHeight;
 }
 
 function botReply(t){
-  t=t.toLowerCase();
+t=t.toLowerCase();
 
-  if(t.includes("hi")) return "Hello 👋";
-  if(t.includes("project")) return "Check my projects above 💼";
-  if(t.includes("contact")) return "Use contact section 📩";
-  if(t.includes("skills")) return "HTML CSS JS React AI 🤖";
+if(t.includes("hi")) return "Hello 👋";
+if(t.includes("project")) return "Check my projects above 💼";
+if(t.includes("hire")) return "You can hire me 🚀";
+if(t.includes("skills")) return "HTML CSS JS React AI";
 
-  return "Ask about projects, skills, or contact 😄";
+return "Ask about projects or skills 😄";
 }
 
 function sendMsg(){
-  let text=input.value.trim();
-  if(!text)return;
+let text=input.value.trim();
+if(!text) return;
 
-  addMsg(text,"user");
-  input.value="";
+addMsg(text,"user");
+input.value="";
 
-  setTimeout(()=>{
-    addMsg(botReply(text),"bot");
-  },500);
+setTimeout(()=>{
+addMsg(botReply(text),"bot");
+},500);
 }
 </script>
 
